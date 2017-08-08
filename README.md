@@ -4,6 +4,7 @@
 In this talk we are going to learn some fundamental JavaScript principles that are necessary to understand hor angularJS works. One of the big problem with angularJS is the `Vocabulary`. Those people who develop this are very smart and they use so many scentific terminology while naming the feature of angularJS. We can say it's just vocabulary or a fancy name to attract or draw the attention of developer. 
 
 Let's get started...
+**Magic-1:** 
 > Before digging into this, I would like to say that; angularJS use a lot of custom HTML elements and attributes in order to provide any new feature. In angular terminology, these are called as `directives`; don't afread, it's just a name. 
 
 #### Let's understand this from from HTML aside:
@@ -30,6 +31,7 @@ Hello, Very good morning!
 ```
 Even this attribute does not make any change in DOM, but it's exist in DOM. Angular doing the same thing which seems like a magic for us. AngularJS follows a convention that the directive name should be like `ng-reply`.
 
+**Magic-2:** 
 > AngularJS solve one of the biggest problem with our javascript application by following some patterns, that is problem with `global namespace`. In many programming languages, `namespacing` is a technique employed to avoid collisions with other objects or variables with same name. 
 
 #### Let's understand this from JavaScript aside:
@@ -53,7 +55,7 @@ function computation() {
   var person = "Deepak";
   // same as above code
 }
-anyValidName();
+computation();
 ```
 In this way, we can solve `person` variable collision, but again there may be collision of `computation()` function. Let's modify this:
 I can rewrite the above code as : 
@@ -73,4 +75,13 @@ But it does not change anything, but I wrote this because your understanding. Ag
 ```
 Instead of creating a variable to hold the function reference and call it explicitely, we can create a anonymous function and call immediately. This solves our problem.
 
-AngularJS does the same thing using constructor and provide an object called `$scope` to each constructor to hold the data that are relevant to this constructor. It follows only a design patterns to resolve the naming collision.   
+AngularJS does the same thing using constructor and provide an object called `$scope` to each constructor to hold the data that are relevant to this constructor. It follows only a design patterns to resolve the naming collision. 
+ 
+**angular.module("myApp")
+       .constructor("MyConstructor", ```function($scope) {
+          // constructor logic goes here
+       }```);**
+We are passing the constructor function defination only.
+
+**Magic-3:**
+> 

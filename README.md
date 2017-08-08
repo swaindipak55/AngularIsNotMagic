@@ -132,4 +132,4 @@ You can check the output [here](https://jsfiddle.net/swaindipak55/t87pdjvk/)
 > **Routing** 
 
 **Magic-6:**
-> **Singleton Object**
+> **Singleton Object**, Angular provides singleton mechanisim by using `provider`, `factory` and `service`. All these are creating singleton object for our application. This pattern is not interduced by angularJS. We can also create singleton object in pure javascript.  

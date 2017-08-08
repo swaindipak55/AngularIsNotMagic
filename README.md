@@ -130,3 +130,6 @@ You can check the output [here](https://jsfiddle.net/swaindipak55/t87pdjvk/)
 
 **Magic-5:**
 > **Routing** 
+
+**Magic-6:**
+> **Singleton Object**

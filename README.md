@@ -78,10 +78,53 @@ Instead of creating a variable to hold the function reference and call it explic
 AngularJS does the same thing using constructor and provide an object called `$scope` to each constructor to hold the data that are relevant to this constructor. It follows only a design patterns to resolve the naming collision. 
 ```
 angular.module("myApp")
-       .constructor("MyConstructor", **function($scope) {
+       .constructor("MyConstructor", function($scope) {
           // constructor logic goes here
-       }**);
-We are passing the constructor function defination only.
+       });
 ```
+We are passing the constructor function defination only, angular callback it internally.
 **Magic-3:**
-> 
+> In most of the angular training, you have seen this example in angularJS:
+In HTML:
+```
+<div ng-app="myApp" ng-controller="MyCtrl">
+  <span>Enter some text : </span>
+  <input type="text" ng-model="text">
+  <div>
+    <h3>Hello, you are entering: {{text}}</h3>
+  </div>
+</div>
+```
+In AngularJS:
+```
+angular.module("myApp", [])
+			 .controller("MyCtrl", function($scope) {
+});
+```
+Right click [here](https://jsfiddle.net/swaindipak55/yovoewwL/) and open in a new tab.
+
+Here is some pure JS code which do the exactly same magic :
+In HTML:
+```
+<div>
+  <span>Enter some text : </span>
+  <input type="text" id="text">
+  <div>
+    <h3>Hello, you are entering: <span id="result"></span></h3>
+  </div>
+</div>
+```
+In JS:
+```
+var text = document.getElementById("text");
+text.addEventListener("input", function() {
+	document.getElementById("result").innerHTML = text.value;
+});
+```
+You can check the output [here](https://jsfiddle.net/swaindipak55/t87pdjvk/)
+
+**Magic-4:**
+> **Dependency Injection**
+
+**Magic-5:**
+> **Routing** 

@@ -84,6 +84,7 @@ angular.module("myApp")
        });
 ```
 We are passing the constructor function defination only, angular callback it internally.
+
 **Magic-3:**
 > In most of the angular training, you have seen this example in angularJS:
 In HTML:

@@ -30,7 +30,18 @@ Hello, Very good morning!
 ```
 Even this attribute does not make any change in DOM, but it's exist in DOM. Angular doing the same thing which seems like a magic for us. AngularJS follows a convention that the directive name should be like `ng-reply`.
 
-> AngularJS solve one of the biggest problem with our javascript application by following some patterns, that is problem with `global namespace`. 
+> AngularJS solve one of the biggest problem with our javascript application by following some patterns, that is problem with `global namespace`. In many programming languages, `namespacing` is a technique employed to avoid collisions with other objects or variables with same name. 
 
 #### Let's understand this from JavaScript aside:
-
+In a real time project, we have so many JS file created by different developer. There may be a chance that, two developer can create a variable with same name. Then it will be around a day to troubleshoot this in javascript. In java, we have package concept to avoid this situation and we have block scope also. 
+**style1.js**
+```
+var person = "Deepak";  // This variable is sitting on global namespace, ie; on 'window' object
+....
+....
+// We did some operation by passing the 'person' variable as a parameter to other function
+compute(person);
+....
+....
+```
+After some days, another developer came and add another file as `style2.js` where he/she defines a function which create/initialize a variable with same name `person`

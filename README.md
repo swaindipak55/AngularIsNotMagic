@@ -33,8 +33,11 @@ Even this attribute does not make any change in DOM, but it's exist in DOM. Angu
 > AngularJS solve one of the biggest problem with our javascript application by following some patterns, that is problem with `global namespace`. In many programming languages, `namespacing` is a technique employed to avoid collisions with other objects or variables with same name. 
 
 #### Let's understand this from JavaScript aside:
-In a real time project, we have so many JS file created by different developer. There may be a chance that, two developer can create a variable with same name. Then it will be around a day to troubleshoot this in javascript. In java, we have package concept to avoid this situation and we have block scope also. 
-**style1.js**
+In a real time project, we have so many JS file created by different developer. There may be a chance that, two developer can create a variable with same name. Then it will be around a day to troubleshoot this in javascript. In java, we have package concept to avoid this situation and we have `block scope` also. 
+
+Note:-  **Scope** refers to where variables and functions are accessible and in what context it is being executed. 
+
+Look at this code:
 ```
 var person = "Deepak";  // This variable is sitting on global namespace, ie; on 'window' object
 ....
@@ -44,4 +47,30 @@ compute(person);
 ....
 ....
 ```
-After some days, another developer came and add another file as `style2.js` where he/she defines a function which create/initialize a variable with same name `person`
+If later on another developer declare same variable for another operation which override the previous variable. For this reason, we need to handle the scope in JS. In javascript, we have only function scope, that means we have to create such pattern using JS function that can avoid this scenario. So we are following a pattern called **Immediately-Invoked Function Expression(IIFE)** coined by **Ben Alman**.
+```
+function computation() {
+  var person = "Deepak";
+  // same as above code
+}
+anyValidName();
+```
+In this way, we can solve `person` variable collision, but again there may be collision of `computation()` function. Let's modify this:
+I can rewrite the above code as : 
+```
+var computation = function() {
+  var person = "Deepak";
+  // same as above code
+}
+computation();
+```
+But it does not change anything, but I wrote this because your understanding. Again I can modify the above code as bellow:
+```
+(function() {
+  var person = "Deepak";
+  // same as above code
+})();
+```
+Instead of creating a variable to hold the function reference and call it explicitely, we can create a anonymous function and call immediately. This solves our problem.
+
+AngularJS does the same thing using constructor and provide an object called `$scope` to each constructor to hold the data that are relevant to this constructor. It follows only a design patterns to resolve the naming collision.   

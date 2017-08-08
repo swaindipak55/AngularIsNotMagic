@@ -77,8 +77,8 @@ Instead of creating a variable to hold the function reference and call it explic
 
 AngularJS does the same thing using constructor and provide an object called `$scope` to each constructor to hold the data that are relevant to this constructor. It follows only a design patterns to resolve the naming collision. 
  
-**angular.module("myApp")
-       .constructor("MyConstructor", ```function($scope) {
+**angular.module("myApp")**
+         **.constructor("MyConstructor", ```function($scope) {
           // constructor logic goes here
        }```);**
 We are passing the constructor function defination only.

@@ -87,6 +87,7 @@ We are passing the constructor function defination only, angular callback it int
 
 **Magic-3:**
 > In most of the angular training, you have seen this example in angularJS:
+
 In HTML:
 ```
 <div ng-app="myApp" ng-controller="MyCtrl">
@@ -106,6 +107,7 @@ angular.module("myApp", [])
 Right click [here](https://jsfiddle.net/swaindipak55/yovoewwL/) and open in a new tab.
 
 Here is some pure JS code which do the exactly same magic :
+
 In HTML:
 ```
 <div>
@@ -116,6 +118,7 @@ In HTML:
   </div>
 </div>
 ```
+
 In JS:
 ```
 var text = document.getElementById("text");
@@ -145,8 +148,60 @@ Note- Here `new` is essential, otherwise the keyword `this` inside the `Person` 
 
 **What happens when a constructor is called?**
 When `new Persson()` is called, Javascript does the following four things:
-- 1. It creates a new object.
-- 2. It sets the constructor property of the object to Person.
-- 3. It sets up the object to delegate to Person.prototype.
-- 4. It calls Person() in the context of the new object.
+- 1. It creates a `new` object.
+- 2. It sets the `constructor` property of the object to `Person`.
+- 3. It sets up the object to delegate to `Person.prototype`.
+- 4. It calls `Person()` in the context of the new object.
 
+Here my intenstion is to make you understand about 3rd point, that is `constructor` property.
+This means, the following things must be true:
+```
+deepak.constructor == Person  // true
+deepak instanceof Person      // true
+```
+If you assign `constructor` property to any other object:
+```
+var Employee = new function() {
+    this.name = "Hello";
+}
+deepak.constructor = Employee;
+
+deepak.constructor == Employee // true
+deepak.constructor == Person   // false
+deepak instanceof Person       // true
+```
+I can't elaborate more about `constructor` property as it is beyond the scope of this talk.
+
+Let's create a single object in javascript:
+```
+var SingletonFactory = (function(){
+    function Person(name) {
+        // This is just a private constructor, If you have any initialization; do it here
+        this.name = name;
+        
+        this.print = function() {
+            print(this.name);
+        }
+    }
+    var instance;
+    return {
+        getInstance : function() {
+            if (instance == null) {
+                instance = new Person("Deepak");
+                instance.constructor = null; // Hide the constructor function from outside. Comment/Uncomment this line and observe the result 
+            }
+            return instance;
+        }
+   };
+})();
+
+var s1 = SingletonFactory.getInstance();
+var s2 =  SingletonFactory.getInstance();
+if (s1 == s2) {
+    print("Both are singleton");
+}
+s1.print()
+s2.print();
+print(s1.constructor);
+```
+You can run this example [here](http://rextester.com/TNRV42283)

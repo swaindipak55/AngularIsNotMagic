@@ -132,4 +132,21 @@ You can check the output [here](https://jsfiddle.net/swaindipak55/t87pdjvk/)
 > **Routing** 
 
 **Magic-6:**
-> **Singleton Object**, Angular provides singleton mechanisim by using `provider`, `factory` and `service`. All these are creating singleton object for our application. This pattern is not interduced by angularJS. We can also create singleton object in pure javascript.  
+> **Singleton Object**, Angular provides singleton mechanisim by using `provider`, `factory` and `service`. All these are creating singleton object for our application. This pattern is not interduced by angularJS. We can also create singleton object in pure javascript. Angular create the singleton objects in same fashion.
+
+Before moving towards singleton pattern, let's understand understand something about javascript constructors:
+```
+function Person(name) {
+   this.name = name;
+}
+var deepak = new Person("Deepak");
+```
+Note- Here `new` is essential, otherwise the keyword `this` inside the `Person` constructor will be equal to `Window` instead of `deepak`.
+
+**What happens when a constructor is called?**
+When `new Persson()` is called, Javascript does the following four things:
+- 1. It creates a new object.
+- 2. It sets the constructor property of the object to Person.
+- 3. It sets up the object to delegate to Person.prototype.
+- 4. It calls Person() in the context of the new object.
+

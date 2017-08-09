@@ -129,7 +129,43 @@ text.addEventListener("input", function() {
 You can check the output [here](https://jsfiddle.net/swaindipak55/t87pdjvk/)
 
 **Magic-4:**
-> **Dependency Injection**
+> **Dependency Injection** is one of the best feature provided by angularJS. Have you ever think about this? How this feature given by angularJS?
+`Dependency Injection` is one way to connect an object to another. We have another two way to connect an object in Java.
+- Dependency Create
+- Dependency Pull
+Dependency Injection bit popular than other two ways, because of the following reason:
+*If we know that a target object has to be instantiated in our context to proceed further then, why to wait to create or pull, when it is required? why not create it in loading or deployement time and inject it whenever needed.*
+
+From angular point of view, dependency injection is, instead of creating an object inside a function; pass the function defination as an argument to the function.
+For an Example;
+```
+function Person(name) {
+  this.name = name;
+  // do other operation
+}
+function doSomeThing() {
+   var deepak = new Person("Deepak");
+   // do some operation on this 'deepak' object
+}
+```
+Instead of doing this, we can pass the 'deepak' instance to the 'doSomeThing()' function which makes it loosly coupled. So we will create the person object where the 'doSomeThing()' function called and pass that to 'doSomeThing()' function.
+```
+function doSomeThing(person) {
+   // do some operation on 'person'
+}
+var deepak = new Person("Deepak");
+// call the function by passing 'deepak' reference to it
+doSomeThing(deepak);
+```
+or 
+```
+doSomeThing(function(name) {
+  this.name = name;
+  // direct define the constructor function here
+});
+```
+Angular doing this things, but here the chalenge is how angular identifies the all the arguments and inject accrodingly. Let's see this example:
+
 
 **Magic-5:**
 > **Routing** 
@@ -188,7 +224,8 @@ var SingletonFactory = (function(){
         getInstance : function() {
             if (instance == null) {
                 instance = new Person("Deepak");
-                instance.constructor = null; // Hide the constructor function from outside. Comment/Uncomment this line and observe the result 
+                instance.constructor = null; // Hide the constructor function from outside. 
+		//Comment/Uncomment this line and observe the result 
             }
             return instance;
         }
